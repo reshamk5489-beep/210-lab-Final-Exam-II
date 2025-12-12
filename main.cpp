@@ -8,6 +8,7 @@ const int MAX_CUSTOMER_NAMES = 10;
 const int MAX_DRINKS_ORDERED = 7;
 const int MAX_MUFFINS = 5;
 const int MAX_BRACELETS = 5;
+const int MAX_SMOOTHIES = 5;
 
 struct Node 
 {
@@ -97,6 +98,7 @@ int main()
     CoffeeQueue coffeeQueue;
     deque<string> muffinQueue;
     vector<string> braceletQueue;
+    queue<string> smoothieQueue;
 
     string customerNames[] = 
     {
@@ -120,6 +122,10 @@ int main()
         "Red","Blue","Green","Yellow","Purple"
     };
 
+    string smoothies[] = 
+    {
+        "Strawberry","Mango","Banana","Blueberry","Spinach"
+    };
 
     for (int i = 0; i < 3; i++) 
     {
@@ -144,6 +150,14 @@ int main()
 
         braceletQueue.push_back(customerName + " - " + braceletName);
     }
+
+    for (int i = 0; i < 3; i++)
+    {
+        string customerName = customerNames[rand() % MAX_CUSTOMER_NAMES];
+        string smoothieName = smoothies[rand() % MAX_SMOOTHIES];
+
+        smoothieQueue.push(customerName + " - " + smoothieName);
+    }
                     
     coffeeQueue.displayList();
 
@@ -158,6 +172,8 @@ int main()
     {
         cout << "\t" << c << endl;
     }
+
+    cout << endl << "Smoothie Queue: " << endl;
 
     for (int round = 1; round <= 10; round++) 
     {
@@ -241,9 +257,31 @@ int main()
         {
             cout << "\t" << c << endl;
         }
+
+        if (!smoothieQueue.empty()) 
+        {
+            cout << smoothieQueue.front() << " was served." << endl;
+            smoothieQueue.pop();
+        } 
+        else 
+        {
+            cout << "No smoothies to serve this round." << endl;
+        }
+
+        if (rand() % 2 == 0) 
+        {
+            string customerName = customerNames[rand() % MAX_CUSTOMER_NAMES];
+            string smoothieName = smoothies[rand() % MAX_SMOOTHIES];
+
+            smoothieQueue.push(customerName + " - " + smoothieName);
+        } 
+        else 
+        {
+            cout << "No new customer this round." << endl;
+        }
+
+        cout << endl << "Smoothie Queue: " << endl;
     }
 
     return 0;
 }
-
-// Milestone 4
