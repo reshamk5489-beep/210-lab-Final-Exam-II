@@ -174,6 +174,12 @@ int main()
     }
 
     cout << endl << "Smoothie Queue: " << endl;
+    queue<string> tempQueue = smoothieQueue;
+    while (!tempQueue.empty()) 
+    { 
+        cout << "\t" << tempQueue.front() << endl;
+        tempQueue.pop();
+    }
 
     for (int round = 1; round <= 10; round++) 
     {
@@ -281,6 +287,12 @@ int main()
         }
 
         cout << endl << "Smoothie Queue: " << endl;
+        queue<string> tempQueue = smoothieQueue;
+        while (!tempQueue.empty()) 
+        { 
+            cout << "\t" << tempQueue.front() << endl;
+            tempQueue.pop();
+        }
     }
 
     return 0;
