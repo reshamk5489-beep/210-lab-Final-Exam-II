@@ -2,6 +2,9 @@
 #include <iostream>
 using namespace std;
 
+const int MAX_CUSTOMER_NAMES = 10;
+const int MAX_DRINKS_ORDERED = 7;
+
 struct Node 
 {
     string customerName;
@@ -78,8 +81,8 @@ int main()
 
     for (int i = 0; i < 5; i++) 
     {
-        string customerName = customerNames[rand() % 10];
-        string drinkOrdered = drinksOrdered[rand() % 10];
+        string customerName = customerNames[rand() % MAX_CUSTOMER_NAMES];
+        string drinkOrdered = drinksOrdered[rand() % MAX_DRINKS_ORDERED];
 
         queue.addToQueue(customerName, drinkOrdered);
     }
