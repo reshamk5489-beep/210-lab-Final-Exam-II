@@ -1,11 +1,13 @@
 #include <string>
 #include <iostream>
 #include <deque>
+#include <vector>
 using namespace std;
 
 const int MAX_CUSTOMER_NAMES = 10;
 const int MAX_DRINKS_ORDERED = 7;
 const int MAX_MUFFINS = 5;
+const int MAX_BRACELETS = 5;
 
 struct Node 
 {
@@ -94,6 +96,7 @@ int main()
 
     CoffeeQueue coffeeQueue;
     deque<string> muffinQueue;
+    vector<string> braceletQueue;
 
     string customerNames[] = 
     {
@@ -112,6 +115,12 @@ int main()
         "Blueberry","Chocolate Chip","Banana","Bran","Cranberry"
     };
 
+    string bracelets[] = 
+    {
+        "Red","Blue","Green","Yellow","Purple"
+    };
+
+
     for (int i = 0; i < 3; i++) 
     {
         string customerName = customerNames[rand() % MAX_CUSTOMER_NAMES];
@@ -127,11 +136,25 @@ int main()
 
         muffinQueue.push_back(customerName + " - " + muffinName);
     }
+
+    for (int i = 0; i < 3; i++)
+    {
+        string customerName = customerNames[rand() % MAX_CUSTOMER_NAMES];
+        string braceletName = bracelets[rand() % MAX_BRACELETS];
+
+        braceletQueue.push_back(customerName + " - " + braceletName);
+    }
                     
     coffeeQueue.displayList();
 
     cout << endl << "Muffin Queue: " << endl;
     for (auto& c : muffinQueue) 
+    {
+        cout << "\t" << c << endl;
+    }
+
+    cout << endl << "Bracelet Queue: " << endl;
+    for (auto& c : braceletQueue) 
     {
         cout << "\t" << c << endl;
     }
@@ -191,9 +214,34 @@ int main()
             cout << "\t" << c << endl;
         }
 
+        if (!braceletQueue.empty()) 
+        {
+            cout << braceletQueue.front() << " was served." << endl;
+            braceletQueue.erase(braceletQueue.begin());
+        } 
+        else 
+        {
+            cout << "No bracelets to serve this round." << endl;
+        }
+
+        if (rand() % 2 == 0) 
+        {
+            string customerName = customerNames[rand() % MAX_CUSTOMER_NAMES];
+            string braceletName = bracelets[rand() % MAX_BRACELETS];
+    
+            braceletQueue.push_back(customerName + " - " + braceletName);
+        } 
+        else 
+        {
+            cout << "No new customer this round." << endl;
+        }
+
+        cout << endl << "Bracelet Queue: " << endl;
+        for (auto& c : braceletQueue) 
+        {
+            cout << "\t" << c << endl;
+        }
     }
 
     return 0;
 }
-
-// Milestone 3
