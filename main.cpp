@@ -94,7 +94,7 @@ int main()
 
     queue.displayList();
 
-    for (int round = 1; round < 10; round++) 
+    for (int round = 1; round <= 10; round++) 
     {
         cout << endl << "Round #" << round << ":" << endl;
 
@@ -102,6 +102,18 @@ int main()
         {
             cout << "Queue is empty this round." << endl;
         } 
+
+        if (rand() % 2 == 0) 
+        {
+            string customerName = customerNames[rand() % MAX_CUSTOMER_NAMES];
+            string drinkOrdered = drinksOrdered[rand() % MAX_DRINKS_ORDERED];
+    
+            queue.addToQueue(drinkOrdered, customerName);
+        } 
+        else 
+        {
+            cout << "No new customer this round." << endl;
+        }
 
         queue.displayList();
     }
