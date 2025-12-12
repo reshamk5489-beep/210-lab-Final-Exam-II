@@ -48,8 +48,6 @@ class CoffeeQueue
                 tailNode->next = newNode;
                 tailNode = newNode;
             }
-    
-            cout << customerName << " entered the line (ordered " << drinkOrdered << ")." << endl;
         }
 
         void deleteFromQueue() 
@@ -200,6 +198,7 @@ int main()
             string drinkOrdered = drinksOrdered[rand() % MAX_DRINKS_ORDERED];
     
             coffeeQueue.addToQueue(customerName, drinkOrdered);
+            cout << customerName << " entered the line (ordered " << drinkOrdered << ")." << endl;
         } 
         else 
         {
@@ -207,6 +206,7 @@ int main()
         }
 
         coffeeQueue.displayList();
+        cout << endl;
 
         if (!muffinQueue.empty()) 
         {
@@ -224,6 +224,7 @@ int main()
             string muffinName = muffins[rand() % MAX_MUFFINS];
 
             muffinQueue.push_back(customerName + " - " + muffinName);
+            cout << customerName << " entered the line (ordered " << muffinName << ")." << endl;
         } 
         else 
         {
@@ -235,6 +236,8 @@ int main()
         {
             cout << "\t" << c << endl;
         }
+
+        cout << endl;
 
         if (!braceletQueue.empty()) 
         {
@@ -252,6 +255,7 @@ int main()
             string braceletName = bracelets[rand() % MAX_BRACELETS];
     
             braceletQueue.push_back(customerName + " - " + braceletName);
+            cout << customerName << " entered the line (ordered " << braceletName << ")." << endl;
         } 
         else 
         {
@@ -263,6 +267,8 @@ int main()
         {
             cout << "\t" << c << endl;
         }
+
+        cout << endl;
 
         if (!smoothieQueue.empty()) 
         {
@@ -280,6 +286,7 @@ int main()
             string smoothieName = smoothies[rand() % MAX_SMOOTHIES];
 
             smoothieQueue.push(customerName + " - " + smoothieName);
+            cout << customerName << " entered the line (ordered " << smoothieName << ")." << endl;
         } 
         else 
         {
@@ -293,9 +300,9 @@ int main()
             cout << "\t" << tempQueue.front() << endl;
             tempQueue.pop();
         }
+
+        cout << endl;
     }
 
     return 0;
 }
-
-// Milestone 5
