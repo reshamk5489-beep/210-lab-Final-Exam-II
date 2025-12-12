@@ -47,6 +47,26 @@ class CoffeeQueue
             cout << customerName << " entered the line (ordered " << drinkOrdered << ")." << endl;
         }
 
+        void deleteFromQueue() 
+        {
+            if (headNode == nullptr) 
+            {
+                cout << "No one to serve." << endl;
+                return;
+            }
+    
+            Node* temp = headNode;
+            cout << headNode->customerName << " was served (" << headNode->drinkOrdered << ")." << endl;
+            headNode = headNode->next;
+    
+            delete temp;
+
+            if (!headNode)
+            {
+                tailNode = nullptr;
+            }
+        }
+
         void displayList() 
         {
             cout << endl << "Current queue:" << endl;
@@ -102,13 +122,17 @@ int main()
         {
             cout << "Queue is empty this round." << endl;
         } 
+        else
+        {
+            queue.deleteFromQueue();
+        }
 
         if (rand() % 2 == 0) 
         {
             string customerName = customerNames[rand() % MAX_CUSTOMER_NAMES];
             string drinkOrdered = drinksOrdered[rand() % MAX_DRINKS_ORDERED];
     
-            queue.addToQueue(drinkOrdered, customerName);
+            queue.addToQueue(customerName, drinkOrdered);
         } 
         else 
         {
