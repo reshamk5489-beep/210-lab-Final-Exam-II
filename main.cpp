@@ -5,6 +5,7 @@ using namespace std;
 
 const int MAX_CUSTOMER_NAMES = 10;
 const int MAX_DRINKS_ORDERED = 7;
+const int MAX_MUFFINS = 5;
 
 struct Node 
 {
@@ -70,7 +71,7 @@ class CoffeeQueue
 
         void displayList() 
         {
-            cout << endl << "Current queue:" << endl;
+            cout << endl << "Coffee queue:" << endl;
             if (headNode == nullptr) 
             {
                 cout << "\tempty" << endl;
@@ -106,6 +107,11 @@ int main()
         "Matcha Latte", "Cappuccino", "Espresso Shot"
     };
 
+    string muffins[] = 
+    {
+        "Blueberry","Chocolate Chip","Banana","Bran","Cranberry"
+    };
+
     for (int i = 0; i < 3; i++) 
     {
         string customerName = customerNames[rand() % MAX_CUSTOMER_NAMES];
@@ -117,11 +123,18 @@ int main()
     for (int i = 0; i < 3; i++)
     {
         string customerName = customerNames[rand() % MAX_CUSTOMER_NAMES];
+        string muffinName = muffins[rand() % MAX_MUFFINS];
 
-        muffinQueue.push_back(customerName + " (muffin)");
+        muffinQueue.push_back(customerName + " - " + muffinName);
     }
                     
     coffeeQueue.displayList();
+
+    cout << endl << "Muffin Queue: " << endl;
+    for (auto& c : muffinQueue) 
+    {
+        cout << "\t" << c << endl;
+    }
 
     for (int round = 1; round <= 10; round++) 
     {
@@ -152,8 +165,8 @@ int main()
 
         if (!muffinQueue.empty()) 
         {
-            cout << muffinQueue.front() << " was served (muffin)." << endl;
-            muffinQueue.front();
+            cout << muffinQueue.front() << " was served." << endl;
+            muffinQueue.pop_front();
         } 
         else 
         {
@@ -163,13 +176,21 @@ int main()
         if (rand() % 2 == 0) 
         {
             string customerName = customerNames[rand() % MAX_CUSTOMER_NAMES];
-    
-            muffinQueue.push_back(customerName + " (muffin)");
+            string muffinName = muffins[rand() % MAX_MUFFINS];
+
+            muffinQueue.push_back(customerName + " - " + muffinName);
         } 
         else 
         {
             cout << "No new customer this round." << endl;
         }
+
+        cout << endl << "Muffin Queue: " << endl;
+        for (auto& c : muffinQueue) 
+        {
+            cout << "\t" << c << endl;
+        }
+
     }
 
     return 0;
