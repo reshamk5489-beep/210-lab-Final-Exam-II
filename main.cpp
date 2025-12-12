@@ -25,9 +25,10 @@ class CoffeeQueue
         {
             Node* newNode = new Node{customerName, drinkOrdered, nullptr};
     
-            if (headNode == nullptr) 
+            if (tailNode == nullptr) 
             { 
                 headNode = newNode;
+                tailNode = newNode;
             } 
             else 
             {
@@ -40,16 +41,6 @@ class CoffeeQueue
 
         void displayList() 
         {
-            if (headNode != nullptr) 
-            {
-                cout << headNode->customerName << endl;
-            }
-
-            if (tailNode != nullptr) 
-            {
-                cout << tailNode->customerName << endl;
-            }
-           
             cout << endl << "Current queue:" << endl;
             if (headNode == nullptr) 
             {
@@ -73,10 +64,26 @@ int main()
 
     CoffeeQueue queue;
 
-    queue.addToQueue("Alice", "Latte");
-    queue.addToQueue("Bob", "Cappuccino");
-    queue.addToQueue("Charlie", "Espresso");
-    
+    string customerNames[] = 
+    {
+        "Ava", "Liam", "Emma", "Noah", "Sophia",
+        "Mason", "Isabella", "Lucas", "Mia", "James"
+    };
+
+    string drinksOrdered[] = 
+    {
+        "Latte", "Mocha", "Cold Brew", "Americano",
+        "Matcha Latte", "Cappuccino", "Espresso Shot"
+    };
+
+    for (int i = 0; i < 5; i++) 
+    {
+        string customerName = customerNames[rand() % 10];
+        string drinkOrdered = drinksOrdered[rand() % 10];
+
+        queue.addToQueue(customerName, drinkOrdered);
+    }
+
     queue.displayList();
 
     return 0;
