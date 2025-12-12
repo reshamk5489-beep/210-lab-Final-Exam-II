@@ -24,6 +24,11 @@ class CoffeeQueue
             headNode = tailNode = nullptr;
         }
 
+        bool isQueueEmpty() 
+        {
+            return headNode == nullptr;
+        }
+
         void addToQueue(string customerName, string drinkOrdered) 
         {
             Node* newNode = new Node{customerName, drinkOrdered, nullptr};
@@ -79,7 +84,7 @@ int main()
         "Matcha Latte", "Cappuccino", "Espresso Shot"
     };
 
-    for (int i = 0; i < 5; i++) 
+    for (int i = 0; i < 3; i++) 
     {
         string customerName = customerNames[rand() % MAX_CUSTOMER_NAMES];
         string drinkOrdered = drinksOrdered[rand() % MAX_DRINKS_ORDERED];
@@ -89,7 +94,17 @@ int main()
 
     queue.displayList();
 
+    for (int round = 1; round < 10; round++) 
+    {
+        cout << endl << "Round #" << round << ":" << endl;
+
+        if (queue.isQueueEmpty()) 
+        {
+            cout << "Queue is empty this round." << endl;
+        } 
+
+        queue.displayList();
+    }
+
     return 0;
 }
-
-// Milestone 1
