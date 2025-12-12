@@ -40,6 +40,16 @@ class CoffeeQueue
 
         void displayList() 
         {
+            if (headNode != nullptr) 
+            {
+                cout << headNode->customerName << endl;
+            }
+
+            if (tailNode != nullptr) 
+            {
+                cout << tailNode->customerName << endl;
+            }
+           
             cout << endl << "Current queue:" << endl;
             if (headNode == nullptr) 
             {
@@ -59,5 +69,15 @@ class CoffeeQueue
 
 int main()
 {
+    srand(time(0));
+
+    CoffeeQueue queue;
+
+    queue.addToQueue("Alice", "Latte");
+    queue.addToQueue("Bob", "Cappuccino");
+    queue.addToQueue("Charlie", "Espresso");
+    
+    queue.displayList();
+
     return 0;
 }
