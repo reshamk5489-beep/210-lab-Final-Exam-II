@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <deque>
 using namespace std;
 
 const int MAX_CUSTOMER_NAMES = 10;
@@ -90,7 +91,8 @@ int main()
 {
     srand(time(0));
 
-    CoffeeQueue queue;
+    CoffeeQueue coffeeQueue;
+    deque<string> muffinQueue;
 
     string customerNames[] = 
     {
@@ -109,22 +111,29 @@ int main()
         string customerName = customerNames[rand() % MAX_CUSTOMER_NAMES];
         string drinkOrdered = drinksOrdered[rand() % MAX_DRINKS_ORDERED];
 
-        queue.addToQueue(customerName, drinkOrdered);
+        coffeeQueue.addToQueue(customerName, drinkOrdered);
     }
 
-    queue.displayList();
+    for (int i = 0; i < 3; i++)
+    {
+        string customerName = customerNames[rand() % MAX_CUSTOMER_NAMES];
+
+        muffinQueue.push_back(customerName + " (muffin)");
+    }
+                    
+    coffeeQueue.displayList();
 
     for (int round = 1; round <= 10; round++) 
     {
         cout << endl << "Round #" << round << ":" << endl;
 
-        if (queue.isQueueEmpty()) 
+        if (coffeeQueue.isQueueEmpty()) 
         {
             cout << "Queue is empty this round." << endl;
         } 
         else
         {
-            queue.deleteFromQueue();
+            coffeeQueue.deleteFromQueue();
         }
 
         if (rand() % 2 == 0) 
@@ -132,17 +141,36 @@ int main()
             string customerName = customerNames[rand() % MAX_CUSTOMER_NAMES];
             string drinkOrdered = drinksOrdered[rand() % MAX_DRINKS_ORDERED];
     
-            queue.addToQueue(customerName, drinkOrdered);
+            coffeeQueue.addToQueue(customerName, drinkOrdered);
         } 
         else 
         {
             cout << "No new customer this round." << endl;
         }
 
-        queue.displayList();
+        coffeeQueue.displayList();
+
+        if (!muffinQueue.empty()) 
+        {
+            cout << muffinQueue.front() << " was served (muffin)." << endl;
+            muffinQueue.front();
+        } 
+        else 
+        {
+            cout << "No muffins to serve this round." << endl;
+        }
+
+        if (rand() % 2 == 0) 
+        {
+            string customerName = customerNames[rand() % MAX_CUSTOMER_NAMES];
+    
+            muffinQueue.push_back(customerName + " (muffin)");
+        } 
+        else 
+        {
+            cout << "No new customer this round." << endl;
+        }
     }
 
     return 0;
 }
-
-// Milestone 2
